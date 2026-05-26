@@ -1,13 +1,12 @@
 import { betterAuth } from "better-auth";
-import { mongodbAdapter } from "@better-auth/mongodb";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import clientPromise from "./db";
 
-// We await the client connection and select the database
 const client = await clientPromise;
-const db = client.db("mango_books"); // You can name this whatever you like
+const db = client.db("mango_books"); 
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db),
+  database: mongodbAdapter(db, { client }),
   emailAndPassword: {
     enabled: true,
   },
