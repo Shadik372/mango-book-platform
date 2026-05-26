@@ -1,0 +1,110 @@
+[
+  {
+    "id": "1",
+    "title": "The Quantum Age",
+    "author": "Dr. Aris Thorne",
+    "description": "A deep dive into the future of quantum computing and its impact on everyday life.",
+    "category": "Tech",
+    "available_quantity": 5,
+    "image_url": "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "2",
+    "title": "Whispers of the Forest",
+    "author": "Elara Vance",
+    "description": "A captivating fictional tale about a hidden society living within an ancient, magical woodland.",
+    "category": "Story",
+    "available_quantity": 3,
+    "image_url": "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "3",
+    "title": "Cosmic Origins",
+    "author": "Neil D. Tyson",
+    "description": "Exploring the birth of the universe, black holes, and the mysteries of dark matter.",
+    "category": "Science",
+    "available_quantity": 7,
+    "image_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "4",
+    "title": "Mastering React 19",
+    "author": "Sarah Drasner",
+    "description": "The ultimate guide to building modern, responsive web applications using the latest React features.",
+    "category": "Tech",
+    "available_quantity": 2,
+    "image_url": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "5",
+    "title": "The Midnight Heist",
+    "author": "James Patterson",
+    "description": "A thrilling mystery following a group of elite thieves attempting the impossible.",
+    "category": "Story",
+    "available_quantity": 4,
+    "image_url": "https://images.unsplash.com/photo-1587876931567-564ce588bfbd?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "6",
+    "title": "Cellular Biology Basics",
+    "author": "Jane Goodall",
+    "description": "An introductory textbook on the building blocks of life, DNA, and cellular division.",
+    "category": "Science",
+    "available_quantity": 8,
+    "image_url": "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "7",
+    "title": "AI Revolution",
+    "author": "Elon Musk",
+    "description": "How Artificial Intelligence is reshaping industries, economies, and human existence.",
+    "category": "Tech",
+    "available_quantity": 6,
+    "image_url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "8",
+    "title": "Echoes of the Past",
+    "author": "George R.R. Martin",
+    "description": "An epic historical fiction spanning three generations of a noble family in a war-torn kingdom.",
+    "category": "Story",
+    "available_quantity": 1,
+    "image_url": "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "9",
+    "title": "The Physics of Everyday Life",
+    "author": "Michio Kaku",
+    "description": "Understanding the hidden scientific principles behind the mundane objects we use daily.",
+    "category": "Science",
+    "available_quantity": 5,
+    "image_url": "https://images.unsplash.com/photo-1636466497217-26c8c54ca430?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "10",
+    "title": "Python for Data Science",
+    "author": "Wes McKinney",
+    "description": "A comprehensive manual on utilizing Python libraries like Pandas and NumPy for data analysis.",
+    "category": "Tech",
+    "available_quantity": 9,
+    "image_url": "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "11",
+    "title": "A Walk to Remember",
+    "author": "Nicholas Sparks",
+    "description": "A heartwarming and tragic romance novel about two unlikely teenagers falling in love.",
+    "category": "Story",
+    "available_quantity": 4,
+    "image_url": "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "12",
+    "title": "Climate Change & Us",
+    "author": "Greta Thunberg",
+    "description": "A factual analysis of global warming trends and actionable steps for environmental preservation.",
+    "category": "Science",
+    "available_quantity": 12,
+    "image_url": "https://images.unsplash.com/photo-1569163139599-0f4517e36f51?auto=format&fit=crop&q=80&w=400"
+  }
+]
