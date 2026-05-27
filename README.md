@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mango Books - Online Book Borrowing Platform
 
-## Getting Started
+## Project Purpose
 
-First, run the development server:
+Mango Books is a seamless and modern web application designed to digitize the traditional library experience. It allows users to explore a vast collection of books, filter titles by category, and manage their digital borrowing history through a secure, interactive dashboard.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Secure Authentication:** Complete user login and registration system, including Google OAuth, powered by Better Auth.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Library Browsing and Filtering:** A dynamic "All Books" page featuring a live search bar and category sidebar filters.
 
-## Learn More
+**Smart Borrowing System:** Users can borrow digital books with strict database validations (maximum limit of 3 books per user and duplicate prevention).
 
-To learn more about Next.js, take a look at the following resources:
+**Interactive Profile Dashboard:** A private user dashboard to view active borrowed books, track borrow dates, and securely return books to the global inventory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Profile Management:** Users can update their profile information (name and avatar) directly from the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Responsive Minimalist Design:** A fully responsive, custom light-mode UI designed for desktop, tablet, and mobile viewing.
 
-## Deploy on Vercel
+## Tech Stack and NPM Packages Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project was built utilizing a modern full-stack JavaScript ecosystem.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Category | Technology |
+
+| Core Framework | Next.js (React) |
+| Database | MongoDB (via the `mongodb` official driver) |
+| Authentication | Better Auth (`better-auth`) |
+| Styling | Tailwind CSS |
+| UI Components | HeroUI (`@heroui/react` and `@heroui/styles`) |
+| Animations | Animate.css (`animate.css`) |
