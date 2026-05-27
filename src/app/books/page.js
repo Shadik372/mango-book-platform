@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation"; // 1. Imported the router
 import { Button, Input } from "@heroui/react";
 import booksData from "@/data/books.json";
 
 export default function AllBooksPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  
+  // 2. Initialized the router
+  const router = useRouter(); 
 
   // Extract unique categories for the sidebar, plus an "All" option
   const categories = ["All", "Story", "Tech", "Science"];
@@ -55,7 +58,6 @@ export default function AllBooksPage() {
             placeholder="Search books by title..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            // Replaced size and classNames with standard Tailwind styling
             className="w-full p-2 text-lg rounded-xl bg-surface-secondary hover:bg-surface-tertiary transition-colors"
           />
         </div>
@@ -63,8 +65,13 @@ export default function AllBooksPage() {
         {/* 3. Book Cards Grid */}
         {filteredBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredBooks.map((book) => (
-              <div key={book.id} className="bg-surface rounded-2xl overflow-hidden border border-border flex flex-col hover:shadow-xl transition-shadow">
+            {filteredBooks.map((book, index) => (
+              
+              <div 
+                key={book.id} 
+                className="animate__animated animate__fadeInUp bg-surface rounded-2xl overflow-hidden border border-border flex flex-col hover:shadow-xl transition-shadow"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="h-56 overflow-hidden">
                   <img src={book.image_url} alt={book.title} className="w-full h-full object-cover" />
                 </div>
@@ -78,8 +85,12 @@ export default function AllBooksPage() {
                   <h3 className="text-xl font-bold mb-4 line-clamp-2">{book.title}</h3>
                   
                   <div className="mt-auto pt-4">
-                    {/* Used standard v3 variant */}
-                    <Button as={Link} href={`/books/${book.id}`} variant="secondary" className="w-full">
+                    {/* 3. Fixed the button to use router.push instead of as={Link} */}
+                    <Button 
+                      onPress={() => router.push(`/books/${book.id}`)} 
+                      variant="secondary" 
+                      className="w-full"
+                    >
                       View Details
                     </Button>
                   </div>

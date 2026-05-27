@@ -71,14 +71,14 @@
     "available_quantity": 1,
     "image_url": "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&q=80&w=400"
   },
-  {
+{
     "id": "9",
     "title": "The Physics of Everyday Life",
     "author": "Michio Kaku",
     "description": "Understanding the hidden scientific principles behind the mundane objects we use daily.",
     "category": "Science",
     "available_quantity": 5,
-    "image_url": "https://images.unsplash.com/photo-1636466497217-26c8c54ca430?auto=format&fit=crop&q=80&w=400"
+    "image_url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=400"
   },
   {
     "id": "10",
@@ -87,8 +87,8 @@
     "description": "A comprehensive manual on utilizing Python libraries like Pandas and NumPy for data analysis.",
     "category": "Tech",
     "available_quantity": 9,
-    "image_url": "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?auto=format&fit=crop&q=80&w=400"
-  },
+    "image_url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=400"
+  },  
   {
     "id": "11",
     "title": "A Walk to Remember",
