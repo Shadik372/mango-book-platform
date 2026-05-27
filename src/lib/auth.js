@@ -7,6 +7,14 @@ const db = client.db("mango_books");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, { client }),
+  
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
+  
   emailAndPassword: {
     enabled: true,
   },
