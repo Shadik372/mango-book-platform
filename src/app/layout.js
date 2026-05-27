@@ -13,10 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    // 1. Changed to className="light" to force white mode
     <html lang="en" className="light" suppressHydrationWarning>
       
-      {/* 2. Added bg-background and text-foreground to apply the light theme globally */}
       <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
         
         <Navbar />

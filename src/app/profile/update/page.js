@@ -10,13 +10,11 @@ export default function UpdateProfilePage() {
   const router = useRouter();
   const { data: session, isPending } = useSession();
 
-  // Form State
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Redirect if logged out, and pre-fill data if logged in
   useEffect(() => {
     if (!isPending && !session) {
       router.push("/login");
@@ -32,7 +30,6 @@ export default function UpdateProfilePage() {
     setMessage("");
 
     try {
-      // Hit the Better Auth update function
       const { data, error } = await authClient.updateUser({
         name: name,
         image: image,
@@ -42,7 +39,6 @@ export default function UpdateProfilePage() {
         setMessage("❌ Error: " + error.message);
       } else {
         setMessage("✅ Profile updated successfully!");
-        // Route back to the dashboard after a short delay
         setTimeout(() => (window.location.href = "/profile"), 1500);
       }
     } catch (err) {

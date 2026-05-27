@@ -11,7 +11,6 @@ export async function GET(request, { params }) {
     const client = await clientPromise;
     const db = client.db("mango_books");
 
-    // 2. THE FIX: Smart Query handles both simple strings and MongoDB ObjectIds
     let query = { id: id };
     if (id.length === 24) {
       query = { $or: [{ id: id }, { _id: new ObjectId(id) }] };
@@ -31,7 +30,6 @@ export async function POST(request, { params }) {
   try {
     const { id } = await params;
 
-    // A. Verify the user is actually logged in on the backend
     const session = await auth.api.getSession({
       headers: await headers()
     });
@@ -43,21 +41,38 @@ export async function POST(request, { params }) {
     const client = await clientPromise;
     const db = client.db("mango_books");
 
-    // 3. THE FIX: Apply the exact same Smart Query here so the borrow function doesn't crash!
+    const currentBorrowsCount = await db.collection("borrows").countDocuments({
+      userId: session.user.id
+    });
+
+    if (currentBorrowsCount >= 3) {
+      return NextResponse.json({ error: "Limit reached! You cannot borrow more than 3 books at a time." }, { status: 400 });
+    }
+
     let query = { id: id };
     if (id.length === 24) {
       query = { $or: [{ id: id }, { _id: new ObjectId(id) }] };
     }
 
-    // B. Check if the book exists and is in stock
     const book = await db.collection("books").findOne(query);
     if (!book || book.available_quantity <= 0) {
       return NextResponse.json({ error: "Sorry, this book is currently out of stock." }, { status: 400 });
     }
 
+    const actualBookId = book.id || id;
+
+    const alreadyBorrowed = await db.collection("borrows").findOne({
+      userId: session.user.id,
+      bookId: actualBookId
+    });
+
+    if (alreadyBorrowed) {
+      return NextResponse.json({ error: "You have already borrowed this book!" }, { status: 400 });
+    }
+
     // C. Deduct 1 from the available quantity in MongoDB
     await db.collection("books").updateOne(
-      query, // <- We use the smart query here to update the exact right book
+      query,
       { $inc: { available_quantity: -1 } }
     );
 
@@ -65,7 +80,7 @@ export async function POST(request, { params }) {
     await db.collection("borrows").insertOne({
       userId: session.user.id,
       userEmail: session.user.email,
-      bookId: id,
+      bookId: actualBookId, 
       bookTitle: book.title,
       borrowedAt: new Date(),
     });

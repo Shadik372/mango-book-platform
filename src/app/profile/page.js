@@ -13,12 +13,31 @@ export default function ProfilePage() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [isLoadingBooks, setIsLoadingBooks] = useState(true);
 
-  // Redirect to login if not authenticated
+  const [returningId, setReturningId] = useState(null);
+
+  const handleReturn = async (bookId) => {
+    setReturningId(bookId);
+    try {
+      const res = await fetch(`/api/return?bookId=${bookId}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        setBorrowedBooks((prev) => prev.filter((record) => record.bookDetails.id !== bookId && record.bookId !== bookId));
+      } else {
+        alert("Failed to return book.");
+      }
+    } catch (err) {
+      alert("Network error occurred.");
+    } finally {
+      setReturningId(null);
+    }
+  };
+
   useEffect(() => {
     if (!isPending && !session) router.push("/login");
   }, [session, isPending, router]);
 
-  // LIVE FETCH: Grab the user's specific borrowed books
   useEffect(() => {
     if (session?.user?.id) {
       fetch(`/api/borrowed?userId=${session.user.id}`)
@@ -59,7 +78,6 @@ export default function ProfilePage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12 w-full flex flex-col gap-8">
       
-      {/* 1. User Information Card (Redesigned) */}
       <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
         
         {/* Subtle background glow effect */}
@@ -106,7 +124,6 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* 2. LIVE Borrowed Books Area (Redesigned) */}
       <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 tracking-tight">My Borrowed Books</h2>
         
@@ -119,16 +136,39 @@ export default function ProfilePage() {
             {borrowedBooks.map((record) => {
               const book = record.bookDetails; 
               return (
-                <div key={record._id} className="bg-white border border-gray-100 rounded-2xl p-4 flex gap-5 items-center hover:shadow-md hover:border-blue-100 transition-all group cursor-pointer" onClick={() => router.push(`/books/${book.id}`)}>
-                  <img src={book.image_url} alt={record.bookTitle} className="w-20 h-28 object-cover rounded-lg shadow-sm" />
-                  <div className="flex flex-col">
+                <div key={record._id} className="bg-white border border-gray-100 rounded-2xl p-4 flex gap-5 items-center hover:shadow-md hover:border-blue-100 transition-all group">
+                  
+                  <img 
+                    src={book.image_url} 
+                    alt={record.bookTitle} 
+                    className="w-20 h-28 object-cover rounded-lg shadow-sm cursor-pointer" 
+                    onClick={() => router.push(`/books/${book.id}`)}
+                  />
+                  
+                  <div className="flex flex-col flex-grow">
                     <span className="text-[10px] bg-blue-50 text-blue-600 border border-blue-100 font-bold uppercase px-2 py-1 rounded-full mb-2 inline-block w-max">
                       {book.category}
                     </span>
-                    <h4 className="font-bold text-lg text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">{record.bookTitle}</h4>
-                    <p className="text-xs text-gray-500 mt-1">
+                    
+                    <h4 
+                      className="font-bold text-lg text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                      onClick={() => router.push(`/books/${book.id}`)}
+                    >
+                      {record.bookTitle}
+                    </h4>
+                    
+                    <p className="text-xs text-gray-500 mt-1 mb-3">
                       Borrowed: <span className="font-medium text-gray-700">{new Date(record.borrowedAt).toLocaleDateString()}</span>
                     </p>
+                    
+                    <Button
+                      size="sm"
+                      className="w-max bg-white border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 transition-colors shadow-sm text-xs font-semibold px-3"
+                      isLoading={returningId === (book.id || record.bookId)}
+                      onPress={() => handleReturn(book.id || record.bookId)}
+                    >
+                      Return Book
+                    </Button>
                   </div>
                 </div>
               );

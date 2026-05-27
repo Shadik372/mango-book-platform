@@ -6,31 +6,25 @@ import booksData from "@/data/books.json";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  // Initialize the Next.js router
   const router = useRouter();
   
-  // Fetch top 4 books for the Featured section
   const featuredBooks = booksData.slice(0, 4);
 
   return (
     <div className="flex flex-col w-full">
       
-{/* 1. Modern Hero Banner Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 flex items-center justify-center overflow-hidden bg-white border-b border-gray-100">
         
-        {/* Subtle decorative background grid and glow */}
         <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
 
         <div className="z-10 text-center px-6 max-w-4xl mx-auto relative">
           
-          {/* Small top badge */}
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-semibold shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
             Welcome to the Future of Reading
           </div>
           
-          {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-gray-900 tracking-tight leading-tight">
             Discover Your Next <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
@@ -38,12 +32,10 @@ export default function Home() {
             </span>
           </h1>
           
-          {/* Subtext */}
           <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
             Explore a vast, digitized collection of gripping stories, technical guides, and scientific discoveries—all instantly accessible.
           </p>
           
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               onPress={() => router.push("/books")} 
@@ -53,7 +45,6 @@ export default function Home() {
             >
               Browse Library
             </Button>
-            {/* Secondary Button */}
             <Button 
               onPress={() => router.push("/register")} 
               variant="bordered" 
@@ -66,19 +57,17 @@ export default function Home() {
 
         </div>
       </section>
-      
-      {/* 2. Marquee Section */}
+
       <section className="bg-primary/10 py-3 overflow-hidden whitespace-nowrap border-y border-primary/20">
         <div className="inline-block animate-marquee font-medium text-primary">
-          <span className="mx-4">🚀 New Arrivals: The Quantum Age is now available!</span>
+          <span className="mx-4">New Arrivals: The Quantum Age is now available!</span>
           <span className="mx-4">|</span>
-          <span className="mx-4">✨ Special Discount on Memberships - Get 20% off today!</span>
+          <span className="mx-4">Special Discount on Memberships - Get 20% off today!</span>
           <span className="mx-4">|</span>
-          <span className="mx-4">📚 Borrow up to 5 books at a time with premium.</span>
+          <span className="mx-4">Borrow up to 5 books at a time with premium.</span>
         </div>
       </section>
 
-      {/* 3. Featured Books Section */}
       <section className="max-w-7xl mx-auto px-6 py-20 w-full">
         <h2 className="text-3xl font-bold mb-10 text-center">Featured Books</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -92,7 +81,6 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-1 line-clamp-1">{book.title}</h3>
                 <p className="text-sm text-default-500 mb-4">{book.author}</p>
                 <div className="mt-auto pt-4">
-                  {/* FIX 2: Updated to use router.push */}
                   <Button 
                     onPress={() => router.push(`/books/${book.id}`)} 
                     color="default" 
@@ -108,7 +96,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Extra Section 1: Why Choose Us */}
       <section className="bg-content2 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-12">Why Mango Books?</h2>
@@ -132,7 +119,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Extra Section 2: Newsletter */}
       <section className="max-w-4xl mx-auto px-6 py-20 text-center">
         <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
         <p className="text-default-500 mb-8">Subscribe to our newsletter for the latest book releases and tech articles.</p>

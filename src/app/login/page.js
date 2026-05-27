@@ -9,11 +9,9 @@ import { signIn } from "@/lib/auth-client";
 export default function LoginPage() {
   const router = useRouter();
   
-  // Form State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  // UI State
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -23,7 +21,6 @@ export default function LoginPage() {
     setErrorMsg("");
 
     try {
-      // Better Auth handles the session creation automatically
       const { data, error } = await signIn.email({
         email,
         password,
@@ -32,7 +29,6 @@ export default function LoginPage() {
       if (error) {
         setErrorMsg(error.message || "Invalid email or password.");
       } else {
-        // Success! Navigate to the Home page per standard routing
         router.push("/");
       }
     } catch (err) {

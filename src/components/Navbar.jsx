@@ -9,7 +9,6 @@ export default function AppNavbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Fetch the session state
   const { data: session, isPending } = useSession();
 
   const handleLogout = async () => {
@@ -21,14 +20,12 @@ export default function AppNavbar() {
     <nav className="bg-white border-b border-gray-100 px-6 py-3 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Left: Minimalist Brand */}
         <div className="flex items-center gap-2">
           <Link href="/" className="font-bold text-xl text-gray-900 tracking-tight flex items-center gap-2">
             <span className="text-2xl">🥭</span> Mango Books
           </Link>
         </div>
 
-        {/* Center: Clean Navigation Links */}
         <ul className="hidden sm:flex gap-8 items-center">
           <li>
             <Link
@@ -52,16 +49,13 @@ export default function AppNavbar() {
           </li>
         </ul>
 
-        {/* Right Side: Ultra-Minimal Profile Area */}
         <div className="flex items-center justify-end min-w-[120px]">
           {isPending ? (
             <div className="w-8 h-8 rounded-full border-2 border-gray-100 border-t-blue-600 animate-spin"></div>
           ) : session ? (
             
-            /* Pure Tailwind Hover Dropdown (No Provider Needed!) */
             <div className="relative group">
               
-              {/* The Trigger: Just the Profile Picture */}
               <div className="flex items-center cursor-pointer py-2">
                 <img
                   src={session.user.image || `https://ui-avatars.com/api/?name=${session.user.name}&background=random`}
@@ -70,7 +64,6 @@ export default function AppNavbar() {
                 />
               </div>
 
-              {/* The Floating Menu */}
               <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden transform origin-top-right group-hover:scale-100 scale-95">
                 <div className="px-4 py-3 bg-gray-50/50 border-b border-gray-100">
                   <p className="text-xs text-gray-500">Signed in as</p>

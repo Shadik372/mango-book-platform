@@ -9,13 +9,11 @@ import { signUp, signIn } from "@/lib/auth-client";
 export default function RegisterPage() {
   const router = useRouter();
   
-  // Form State
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [password, setPassword] = useState("");
   
-  // UI State
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -60,9 +58,6 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-6 bg-surface-secondary">
-      {/* Added 'light' class and explicit white/zinc background colors 
-        to force this card to stand out brightly against the dark page 
-      */}
       <div className="light w-full max-w-md bg-white text-zinc-900 p-8 rounded-2xl shadow-2xl border border-zinc-200">
         
         <div className="text-center mb-8">
