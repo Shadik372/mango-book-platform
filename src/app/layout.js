@@ -13,14 +13,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+    // 1. Changed to className="light" to force white mode
+    <html lang="en" className="light" suppressHydrationWarning>
+      
+      {/* 2. Added bg-background and text-foreground to apply the light theme globally */}
+      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
+        
         <Navbar />
-        {/* main wrapper ensures the footer gets pushed to the bottom */}
+        
         <main className="flex-grow">
           {children}
         </main>
+        
         <Footer />
+        
       </body>
     </html>
   );

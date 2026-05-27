@@ -15,29 +15,58 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       
-      {/* 1. Banner Section */}
-      <section className="relative h-[500px] flex items-center justify-center bg-gradient-to-r from-primary-900 to-content1 overflow-hidden">
-        <div className="z-10 text-center px-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-            Find Your Next Read
-          </h1>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Explore a vast collection of stories, technical guides, and scientific discoveries.
-          </p>
-          {/* FIX 1: Updated to use router.push */}
-          <Button 
-            onPress={() => router.push("/books")} 
-            color="primary" 
-            size="lg" 
-            className="font-semibold shadow-lg"
-          >
-            Browse Now
-          </Button>
-        </div>
-        {/* Decorative background overlay */}
-        <div className="absolute inset-0 bg-black/40 z-0"></div>
-      </section>
+{/* 1. Modern Hero Banner Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 flex items-center justify-center overflow-hidden bg-white border-b border-gray-100">
+        
+        {/* Subtle decorative background grid and glow */}
+        <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
 
+        <div className="z-10 text-center px-6 max-w-4xl mx-auto relative">
+          
+          {/* Small top badge */}
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-semibold shadow-sm">
+            <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
+            Welcome to the Future of Reading
+          </div>
+          
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-gray-900 tracking-tight leading-tight">
+            Discover Your Next <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+              Great Adventure
+            </span>
+          </h1>
+          
+          {/* Subtext */}
+          <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Explore a vast, digitized collection of gripping stories, technical guides, and scientific discoveries—all instantly accessible.
+          </p>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button 
+              onPress={() => router.push("/books")} 
+              color="primary" 
+              size="lg" 
+              className="font-bold text-base px-8 py-6 rounded-full shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform"
+            >
+              Browse Library
+            </Button>
+            {/* Secondary Button */}
+            <Button 
+              onPress={() => router.push("/register")} 
+              variant="bordered" 
+              size="lg" 
+              className="font-bold text-base px-8 py-6 rounded-full border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:scale-105 transition-transform bg-white"
+            >
+              Join for Free
+            </Button>
+          </div>
+
+        </div>
+      </section>
+      
       {/* 2. Marquee Section */}
       <section className="bg-primary/10 py-3 overflow-hidden whitespace-nowrap border-y border-primary/20">
         <div className="inline-block animate-marquee font-medium text-primary">
