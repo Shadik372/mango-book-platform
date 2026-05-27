@@ -1,22 +1,45 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation"; // 1. Imported the router
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button, Input } from "@heroui/react";
-import booksData from "@/data/books.json";
 
 export default function AllBooksPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   
-  // 2. Initialized the router
+  // 1. New State to hold the live database books
+  const [liveBooks, setLiveBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
   const router = useRouter(); 
 
-  // Extract unique categories for the sidebar, plus an "All" option
+  // 2. Fetch the live data from MongoDB when the page loads
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        // This assumes you have an API route at /api/books that returns your MongoDB data
+        const response = await fetch('/api/books');
+        if (response.ok) {
+          const data = await response.json();
+          setLiveBooks(data);
+        } else {
+          console.error("Failed to fetch books");
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchBooks();
+  }, []);
+
   const categories = ["All", "Story", "Tech", "Science"];
 
-  // Filter the books based on search query AND selected category
-  const filteredBooks = booksData.filter((book) => {
+  // 3. Filter using the 'liveBooks' array instead of the static JSON
+  const filteredBooks = liveBooks.filter((book) => {
     const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "All" || book.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -62,13 +85,17 @@ export default function AllBooksPage() {
           />
         </div>
 
-        {/* 3. Book Cards Grid */}
-        {filteredBooks.length > 0 ? (
+        {/* 3. Loading State or Book Cards Grid */}
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : filteredBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredBooks.map((book, index) => (
               
               <div 
-                key={book.id} 
+                key={book._id || book.id} 
                 className="animate__animated animate__fadeInUp bg-surface rounded-2xl overflow-hidden border border-border flex flex-col hover:shadow-xl transition-shadow"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -85,9 +112,8 @@ export default function AllBooksPage() {
                   <h3 className="text-xl font-bold mb-4 line-clamp-2">{book.title}</h3>
                   
                   <div className="mt-auto pt-4">
-                    {/* 3. Fixed the button to use router.push instead of as={Link} */}
                     <Button 
-                      onPress={() => router.push(`/books/${book.id}`)} 
+                      onPress={() => router.push(`/books/${book._id || book.id}`)} 
                       variant="secondary" 
                       className="w-full"
                     >

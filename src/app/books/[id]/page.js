@@ -47,16 +47,20 @@ export default function BookDetailsPage() {
   }, [params.id]);
 
   // BORROW LOGIC: Hit the secure backend API
-  const handleBorrow = async () => {
+const handleBorrow = async () => {
     setIsBorrowing(true);
     
     try {
-      const res = await fetch(`/api/books/${params.id}`, { method: "POST" });
+      const res = await fetch(`/api/books/${params.id}`, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // This is the magic! Tell the backend exactly WHO is borrowing the book
+        body: JSON.stringify({ userId: session.user.id }) 
+      });
       const data = await res.json();
 
       if (res.ok) {
         alert("Success! " + data.message);
-        // Instantly subtract 1 from the UI so we don't have to refresh the page
         setBook((prev) => ({ ...prev, available_quantity: prev.available_quantity - 1 }));
       } else {
         alert("Error: " + data.error);
