@@ -3,8 +3,12 @@
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import booksData from "@/data/books.json";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  // Initialize the Next.js router
+  const router = useRouter();
+  
   // Fetch top 4 books for the Featured section
   const featuredBooks = booksData.slice(0, 4);
 
@@ -20,7 +24,13 @@ export default function Home() {
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             Explore a vast collection of stories, technical guides, and scientific discoveries.
           </p>
-          <Button as={Link} href="/books" color="primary" size="lg" className="font-semibold shadow-lg">
+          {/* FIX 1: Updated to use router.push */}
+          <Button 
+            onPress={() => router.push("/books")} 
+            color="primary" 
+            size="lg" 
+            className="font-semibold shadow-lg"
+          >
             Browse Now
           </Button>
         </div>
@@ -53,7 +63,13 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-1 line-clamp-1">{book.title}</h3>
                 <p className="text-sm text-default-500 mb-4">{book.author}</p>
                 <div className="mt-auto pt-4">
-                  <Button as={Link} href={`/books/${book.id}`} color="default" variant="flat" className="w-full">
+                  {/* FIX 2: Updated to use router.push */}
+                  <Button 
+                    onPress={() => router.push(`/books/${book.id}`)} 
+                    color="default" 
+                    variant="flat" 
+                    className="w-full"
+                  >
                     View Details
                   </Button>
                 </div>
